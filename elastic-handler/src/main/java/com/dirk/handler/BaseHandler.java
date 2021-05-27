@@ -6,6 +6,7 @@ import org.elasticsearch.rest.RestChannel;
 import org.elasticsearch.rest.RestHandler;
 import org.elasticsearch.rest.RestRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,10 +21,13 @@ public class BaseHandler implements RestHandler {
 
     private BaseHandler nextHandler;
 
-    private List<RestRequestHandler> handlers;
+    private List<RestRequestHandler> handlers = new ArrayList();;
 
     public BaseHandler(Environment environment) {
 
+    }
+    public void registerHandler(RestRequestHandler handler){
+        handlers.add(handler);
     }
 
     public List<RestRequestHandler> getHandlers() {
