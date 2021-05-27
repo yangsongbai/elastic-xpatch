@@ -2,6 +2,7 @@ package com.dirk.plugin;
 
 import com.dirk.authorization.config.AuthConfig;
 import com.dirk.authorization.handler.HttpAuthHandler;
+import com.dirk.handler.BaseHandler;
 import com.dirk.ratelimiter.filter.TcpAuditActionFilter;
 import com.dirk.ratelimiter.module.EsModule;
 import org.apache.lucene.util.SetOnce;
@@ -42,13 +43,12 @@ public class ElasticXPatchPlugin  extends Plugin implements ActionPlugin, Networ
     public SetOnce<TcpAuditActionFilter> TcpAuditActionFilter = new SetOnce();
     public Settings settings;
     public static Client client;
-    private HttpAuthHandler httpAuthHandler;
+    private BaseHandler baseHandler;
 
     public ElasticXPatchPlugin(Settings settings, Path configPath){
         super();
-        AuthConfig authConfig = new AuthConfig(new Environment(settings,configPath));
         this.settings = settings;
-        httpAuthHandler = new HttpAuthHandler(authConfig);
+        baseHandler = new BaseHandler(new Environment(settings,configPath));
     }
 
     @Override
@@ -102,7 +102,7 @@ public class ElasticXPatchPlugin  extends Plugin implements ActionPlugin, Networ
     @Override
     public UnaryOperator<RestHandler> getRestHandlerWrapper(ThreadContext threadContext) {
         return sourceHandler -> (RestHandler) (request, channel, client) -> {
-            this.httpAuthHandler.authorize(sourceHandler, request, channel, client);
+            baseHandler.handleRequest(sourceHandler, request, channel, client);
         };
     }
 }

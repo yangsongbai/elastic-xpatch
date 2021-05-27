@@ -9,17 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dirk.authorization</groupId>
-    <artifactId>elastic-authorization</artifactId>
-    <version>${elasticsearch.plugin.version}</version>
-    <dependencies>
-        <dependency>
-            <groupId>com.dirk</groupId>
-            <artifactId>elastic-handler</artifactId>
-            <version>6.4.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>elastic-handler</artifactId>
 
 
 </project>
