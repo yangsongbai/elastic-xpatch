@@ -23,5 +23,11 @@
 hs_err_pid*
 .idea/*
 .idea
- elastic-xpatch-plugin/target/*
- elastic-handler/elastic-handler.iml
+elastic-xpatch-plugin/target/*
+elastic-handler/elastic-handler.iml
+elastic-authorization/elastic-authorization.iml
+elastic-xpatch-plugin/elastic-xpatch-plugin.iml
+elastic-xpatch-plugin/target/*
+elastic-authorization/target/*
+elastic-ratelimiter/target/*
+elastic-handler/target/*
