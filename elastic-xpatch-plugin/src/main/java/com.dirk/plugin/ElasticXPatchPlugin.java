@@ -48,7 +48,7 @@ public class ElasticXPatchPlugin  extends Plugin implements ActionPlugin, Networ
     public ElasticXPatchPlugin(Settings settings, Path configPath){
         super();
         this.settings = settings;
-        baseHandler = new BaseHandler(new Environment(settings,configPath));
+        baseHandler = new HttpAuthHandler(new Environment(settings,configPath));
     }
 
     @Override

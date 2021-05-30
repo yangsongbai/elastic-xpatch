@@ -31,18 +31,18 @@ public class TcpAuditActionFilter implements ActionFilter {
     @Override
     public <Request extends ActionRequest, Response extends ActionResponse> void apply(
             Task task,
-            String s,
+            String action,
             Request request,
             ActionListener<Response> actionListener,
             ActionFilterChain<Request, Response> actionFilterChain) {
         ActionListener<Response> myActionListener = new AnotherActionListener(actionListener,
                 request, System.currentTimeMillis());
         //进行过滤相关操作
-        log.info("----------------filter-------start-------------");
+        //log.info("action-{}-------------",action);
         if (request==null) log.info(String.format("request = %s",request));
         else {
             TransportAddress transportAddress = request.remoteAddress();
-            if (transportAddress==null) log.info(String.format("transportAddress = %s",transportAddress));
+            if (transportAddress==null) ;
             else{
                 String addr = transportAddress.getAddress();
                 int port = transportAddress.getPort();
@@ -53,8 +53,7 @@ public class TcpAuditActionFilter implements ActionFilter {
                 log.info(request.getParentTask().getId());
             }
         }
-        log.info("----------------filter-------end-------------");
-        actionFilterChain.proceed(task, s, request, myActionListener);
+        actionFilterChain.proceed(task, action, request, myActionListener);
 
     }
 

@@ -22,6 +22,9 @@ public class HttpAuthHandler extends BaseHandler {
     protected final Logger log = LogManager.getLogger(com.dirk.authorization.handler.HttpAuthHandler.class);
     private AuthConfig authConfig;
 
+    public HttpAuthHandler() {
+    }
+
     public HttpAuthHandler(Environment environment) {
         super(environment);
     }
@@ -34,11 +37,10 @@ public class HttpAuthHandler extends BaseHandler {
      * @param client
      */
     public boolean authorize(RestHandler sourceHandler, RestRequest request, RestChannel channel, NodeClient client) {
-        log.info("----------------authorize-------start-------------");
         log.info(request.getHeaders().isEmpty());
         log.info(request.getRemoteAddress());
         //检查是否授权等逻辑
-       if (true) {
+       /*if (true) {
            try {
                return true;
            } catch (Exception e) {
@@ -46,9 +48,9 @@ public class HttpAuthHandler extends BaseHandler {
            }
        }else{
            noAuthorized(channel,"");
-       }
-        log.info("----------------authorize-------end-------------");
-       return false;
+       }*/
+        log.info("request content {}",request.content().utf8ToString());
+       return true;
     }
     private void noAuthorized(final RestChannel channel, String message) {
         log.warn(message);
@@ -66,22 +68,24 @@ public class HttpAuthHandler extends BaseHandler {
      * @throws Exception
      */
     public void handleRequest(RestHandler sourceHandler, RestRequest restRequest, RestChannel restChannel, NodeClient nodeClient) throws Exception {
-        BaseHandler handler =   this.getNextHandler();
-        if (handler==null) return;
         if (authorize(sourceHandler,restRequest,restChannel,nodeClient)){
             boolean gon = true;
-            for (RestRequestHandler hand:this.getHandlers()){
-                if (!gon) break;
-                gon = hand.doSomething();
+            if (this.getHandlers()!=null&&this.getHandlers().size()>0) {
+                for (RestRequestHandler hand : this.getHandlers()) {
+                    if (!gon) break;
+                    gon = hand.doSomething();
+                }
             }
             if (gon){
-                handler.handleRequest(sourceHandler,restRequest,restChannel,nodeClient);
-            } else{
-                sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
+                if (this.getNextHandler()!=null)
+                    this.getNextHandler().handleRequest(sourceHandler,restRequest,restChannel,nodeClient);
+                else sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
+                return ;
             }
+            sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
+            return;
         }
-        else{
-            sourceHandler.handleRequest(restRequest, restChannel, nodeClient);
-        }
+        sourceHandler.handleRequest(restRequest, restChannel, nodeClient);
     }
+
 }

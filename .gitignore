@@ -23,3 +23,5 @@
 hs_err_pid*
 .idea/*
 .idea
+ elastic-xpatch-plugin/target/*
+ elastic-handler/elastic-handler.iml

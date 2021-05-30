@@ -20,30 +20,23 @@ public class AuthConfig {
 
     private Environment environment;
 
-    public static final Setting<SecureString> ADMIN_USER = SecureSetting.secureString("es.admin_user", null);
-    public static final Setting<SecureString> ADMIN_PASS = SecureSetting.secureString("es.admin_pass", null);
-    public static final Setting<SecureString> AUTH_TOKEN = SecureSetting.secureString("es.auth_token", null);
-    private String adminUser;
-    private String adminPass;
-    private String authToken;
+    public static final Setting<SecureString> ELASTIC_USER = SecureSetting.secureString("elastic.user", null);
+    public static final Setting<SecureString> ELASTIC_PASS = SecureSetting.secureString("elastic.password", null);
+    private String elasticUser;
+    private String elasticPass;
 
     public AuthConfig(final Environment environment) {
-        this.adminUser = "user";
-        this.adminPass = "password";
-        this.authToken = "token";
+        this.elasticUser = "elasticUser";
+        this.elasticPass = "elasticPass";
 
-        log.info("[ES-PLUGIN] Configuring with admin info: {}:{}:{}", this.adminUser, this.adminPass, this.authToken);
+        log.info("[ES-PLUGIN] Configuring with elastic info: {}:{}:{}", this.elasticUser, this.elasticPass);
     }
 
-    public String getAdminUser() {
-        return adminUser;
+    public String getElasticUser() {
+        return elasticUser;
     }
 
-    public String getAdminPass() {
-        return adminPass;
-    }
-
-    public String getAuthToken() {
-        return this.authToken;
+    public String getElasticPass() {
+        return elasticPass;
     }
 }

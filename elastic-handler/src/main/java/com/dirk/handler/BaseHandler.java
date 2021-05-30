@@ -23,6 +23,9 @@ public class BaseHandler implements RestHandler {
 
     private List<RestRequestHandler> handlers = new ArrayList();;
 
+    public BaseHandler() {
+    }
+
     public BaseHandler(Environment environment) {
 
     }
@@ -48,18 +51,19 @@ public class BaseHandler implements RestHandler {
     }
 
     public void handleRequest(RestHandler sourceHandler, RestRequest restRequest, RestChannel restChannel, NodeClient nodeClient) throws Exception {
-        BaseHandler handler =   this.getNextHandler();
-        if (handler==null) return;
         boolean gon = true;
-        for (RestRequestHandler hand:handlers){
-            if (!gon) break;
-            gon = hand.doSomething();
+        if (handlers!=null&&this.getHandlers().size()>0) {
+            for (RestRequestHandler hand : handlers) {
+                if (!gon) break;
+                gon = hand.doSomething();
+            }
         }
-     if (gon){
-         handler.handleRequest(sourceHandler,restRequest,restChannel,nodeClient);
-       } else{
-         sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
-     }
+      if(gon){
+          if ( this.getNextHandler()!=null)  this.getNextHandler().handleRequest(sourceHandler,restRequest,restChannel,nodeClient);
+          else sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
+          return;
+        }
+       sourceHandler.handleRequest(restRequest,restChannel,nodeClient);
     }
 
     @Override
