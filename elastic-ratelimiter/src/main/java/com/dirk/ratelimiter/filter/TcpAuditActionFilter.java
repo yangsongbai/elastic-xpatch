@@ -38,7 +38,7 @@ public class TcpAuditActionFilter implements ActionFilter {
         ActionListener<Response> myActionListener = new AnotherActionListener(actionListener,
                 request, System.currentTimeMillis());
         //进行过滤相关操作
-        //log.info("action-{}-------------",action);
+        //
         if (request==null) log.info(String.format("request = %s",request));
         else {
             TransportAddress transportAddress = request.remoteAddress();
@@ -46,8 +46,8 @@ public class TcpAuditActionFilter implements ActionFilter {
             else{
                 String addr = transportAddress.getAddress();
                 int port = transportAddress.getPort();
-                log.info(String.format("addr = %s;port = %s ",addr,port));
-                log.info("过滤器");
+                log.info("action = {}",action);
+                log.info(String.format("transportAddress = %s;transportAddress = %s ",addr,port));
                 log.info(request.getDescription());
                 log.info(request.getParentTask().getNodeId());
                 log.info(request.getParentTask().getId());

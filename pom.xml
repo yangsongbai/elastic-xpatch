@@ -12,10 +12,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>elastic-authorization</module>
         <module>elastic-ratelimiter</module>
         <module>elastic-xpatch-plugin</module>
         <module>elastic-handler</module>
+        <module>elastic-security</module>
     </modules>
     <properties>
         <elasticsearch.version>6.4.0</elasticsearch.version>

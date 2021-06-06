@@ -1,10 +1,9 @@
 package com.dirk.plugin;
 
-import com.dirk.authorization.config.AuthConfig;
-import com.dirk.authorization.handler.HttpAuthHandler;
 import com.dirk.handler.BaseHandler;
 import com.dirk.ratelimiter.filter.TcpAuditActionFilter;
 import com.dirk.ratelimiter.module.EsModule;
+import com.dirk.security.authc.handler.HttpAuthHandler;
 import org.apache.lucene.util.SetOnce;
 import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.client.Client;

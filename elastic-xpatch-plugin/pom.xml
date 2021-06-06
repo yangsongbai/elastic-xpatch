@@ -12,15 +12,15 @@
     <artifactId>elastic-xpatch-plugin</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.dirk.authorization</groupId>
-            <artifactId>elastic-authorization</artifactId>
+            <groupId>com.dirk</groupId>
+            <artifactId>elastic-ratelimiter</artifactId>
             <version>${elasticsearch.plugin.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.dirk</groupId>
-            <artifactId>elastic-ratelimiter</artifactId>
-            <version>${elasticsearch.plugin.version}</version>
+            <artifactId>elastic-security</artifactId>
+            <version>6.4.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
