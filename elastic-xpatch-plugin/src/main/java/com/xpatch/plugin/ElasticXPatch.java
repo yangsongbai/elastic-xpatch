@@ -1,24 +1,24 @@
-package com.dirk.plugin;
+package com.xpatch.plugin;
 
-import com.dirk.handler.BaseHandler;
-import com.dirk.ratelimiter.filter.TcpAuditActionFilter;
-import com.dirk.ratelimiter.module.EsModule;
-import com.dirk.security.authc.handler.HttpAuthHandler;
+import com.xpatch.handler.BaseHandler;
+import com.xpatch.ratelimiter.filter.TcpAuditActionFilter;
+import com.xpatch.ratelimiter.module.EsModule;
+import com.xpatch.security.authc.handler.HttpAuthHandler;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.SetOnce;
 import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.common.io.stream.NamedWriteableRegistry;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.common.xcontent.NamedXContentRegistry;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.env.NodeEnvironment;
-import org.elasticsearch.plugins.ActionPlugin;
-import org.elasticsearch.plugins.NetworkPlugin;
-import org.elasticsearch.plugins.Plugin;
+import org.elasticsearch.plugins.*;
 import org.elasticsearch.rest.RestHandler;
 import org.elasticsearch.script.ScriptService;
 import org.elasticsearch.threadpool.ThreadPool;
@@ -38,13 +38,16 @@ import java.util.function.UnaryOperator;
  * @email yangsongbaivat@163.com
  * @Version 1.0
  **/
-public class ElasticXPatchPlugin  extends Plugin implements ActionPlugin, NetworkPlugin {
+public class ElasticXPatch extends Plugin  implements ActionPlugin, IngestPlugin, NetworkPlugin, ClusterPlugin, DiscoveryPlugin, MapperPlugin,
+        ExtensiblePlugin {
+    private static final Logger logger = Loggers.getLogger(ElasticXPatch.class);
+
     public SetOnce<TcpAuditActionFilter> TcpAuditActionFilter = new SetOnce();
     public Settings settings;
     public static Client client;
     private BaseHandler baseHandler;
 
-    public ElasticXPatchPlugin(Settings settings, Path configPath){
+    public ElasticXPatch(Settings settings, Path configPath){
         super();
         this.settings = settings;
         baseHandler = new HttpAuthHandler(new Environment(settings,configPath));

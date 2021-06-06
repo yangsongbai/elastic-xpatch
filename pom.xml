@@ -24,7 +24,7 @@
         <log4j.version>2.11.1</log4j.version>
         <elasticsearch.plugin.name>elastic-xpatch-plugin</elasticsearch.plugin.name>
         <elasticsearch.plugin.description>plugin for Elasticsearch</elasticsearch.plugin.description>
-        <elasticsearch.plugin.classname>com.dirk.plugin.ElasticXPatchPlugin</elasticsearch.plugin.classname>
+        <elasticsearch.plugin.classname>ElasticXPatch</elasticsearch.plugin.classname>
         <elasticsearch.plugin.jvm>true</elasticsearch.plugin.jvm>
         <elasticsearch.plugin.native.controller>false</elasticsearch.plugin.native.controller>
         <tests.rest.load_packaged>false</tests.rest.load_packaged>

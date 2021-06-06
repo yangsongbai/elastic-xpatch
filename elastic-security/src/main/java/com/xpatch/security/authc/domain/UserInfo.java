@@ -1,4 +1,4 @@
-package com.dirk.security.authc.domain;
+package com.xpatch.security.authc.domain;
 
 /**
  * @ClassName UserInof

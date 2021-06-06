@@ -1,6 +1,6 @@
-package com.dirk.ratelimiter.module;
+package com.xpatch.ratelimiter.module;
 
-import com.dirk.ratelimiter.filter.TcpAuditActionFilter;
+import com.xpatch.ratelimiter.filter.TcpAuditActionFilter;
 import org.elasticsearch.common.inject.AbstractModule;
 
 /**

@@ -1,4 +1,4 @@
-package com.dirk.authorization.domain;
+package com.xpatch.authorization.domain;
 
 /**
  * @ClassName UserInof

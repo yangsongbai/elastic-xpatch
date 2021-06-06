@@ -1,8 +1,8 @@
-package com.dirk.authorization.handler;
+package com.xpatch.authorization.handler;
 
-import com.dirk.authorization.config.AuthConfig;
-import com.dirk.handler.BaseHandler;
-import com.dirk.handler.RestRequestHandler;
+import com.xpatch.authorization.config.AuthConfig;
+import com.xpatch.handler.BaseHandler;
+import com.xpatch.handler.RestRequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.elasticsearch.client.node.NodeClient;
@@ -19,7 +19,7 @@ import org.elasticsearch.rest.*;
  **/
 public class HttpAuthHandler extends BaseHandler {
 
-    protected final Logger log = LogManager.getLogger(com.dirk.authorization.handler.HttpAuthHandler.class);
+    protected final Logger log = LogManager.getLogger(com.xpatch.authorization.handler.HttpAuthHandler.class);
     private AuthConfig authConfig;
 
     public HttpAuthHandler() {

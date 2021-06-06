@@ -1,4 +1,4 @@
-package com.dirk.ratelimiter.filter;
+package com.xpatch.ratelimiter.filter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ import java.io.IOException;
  * @Version 1.0
  **/
 public class TcpAuditActionFilter implements ActionFilter {
-    protected final Logger log = LogManager.getLogger(com.dirk.ratelimiter.filter.TcpAuditActionFilter.class);
+    protected final Logger log = LogManager.getLogger(com.xpatch.ratelimiter.filter.TcpAuditActionFilter.class);
     @Override
     public int order() {
         return Integer.MAX_VALUE;

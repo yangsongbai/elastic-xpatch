@@ -1,4 +1,4 @@
-package com.dirk.handler;
+package com.xpatch.handler;
 
 /**
  * @ClassName RequestHandler

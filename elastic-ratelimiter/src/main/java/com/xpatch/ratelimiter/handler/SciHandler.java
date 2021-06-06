@@ -1,4 +1,4 @@
-package com.dirk.ratelimiter.handler;
+package com.xpatch.ratelimiter.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +20,7 @@ import java.net.SocketAddress;
  * @Version 1.0
  **/
 public class SciHandler extends BaseRestHandler {
-    protected final Logger log = LogManager.getLogger(com.dirk.ratelimiter.handler.SciHandler.class);
+    protected final Logger log = LogManager.getLogger(com.xpatch.ratelimiter.handler.SciHandler.class);
     public SciHandler(Settings settings, RestController controller, ClusterSettings clusterSettings, IndexScopedSettings indexScopedSettings) {
         super(settings);
        /* controller.registerHandler(RestRequest.Method.POST, "/", this);

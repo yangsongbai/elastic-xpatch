@@ -1,4 +1,4 @@
-package com.dirk.handler;
+package com.xpatch.handler;
 
 import org.elasticsearch.client.node.NodeClient;
 import org.elasticsearch.env.Environment;

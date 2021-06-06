@@ -1,4 +1,4 @@
-package com.dirk.security.authc.config;
+package com.xpatch.security.authc.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
